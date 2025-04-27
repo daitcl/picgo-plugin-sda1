@@ -4,7 +4,8 @@
     "description": "PicGo 插件，用于将图片上传到 p.sda1.dev 图床",
     "main": "picgo-plugin-sda1.js",
     "scripts": {
-        "test": "echo \"No tests specified\" && exit 0"
+        "test": "jest",
+        "test:watch": "jest --watch"
     },
     "keywords": [
         "picgo",
@@ -19,10 +20,11 @@
         "form-data": "*"
     },
     "devDependencies": {
-        "picgo": "*"
+        "picgo": "*",
+        "jest": "*"
     },
     "picgo": {
         "name": "SDA1 图床",
         "type": "uploader"
     }
-}    
+}
