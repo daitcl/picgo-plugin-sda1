@@ -1,0 +1,28 @@
+{
+    "name": "picgo-plugin-sda1",
+    "version": "1.0.0",
+    "description": "PicGo 插件，用于将图片上传到 p.sda1.dev 图床",
+    "main": "picgo-plugin-sda1.js",
+    "scripts": {
+        "test": "echo \"No tests specified\" && exit 0"
+    },
+    "keywords": [
+        "picgo",
+        "plugin",
+        "sda1",
+        "image upload"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "*",
+        "form-data": "*"
+    },
+    "devDependencies": {
+        "picgo": "*"
+    },
+    "picgo": {
+        "name": "SDA1 图床",
+        "type": "uploader"
+    }
+}    
