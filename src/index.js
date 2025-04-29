@@ -113,14 +113,16 @@ const DEFAULT_CONFIG = {
       }
       // 定义请求头
       let headers = {
-        contentType: 'image/jpeg'
+        'Content-Type': 'application/octet-stream',
+        'User-Agent': 'PicGo',
+        'Connection': 'keep-alive'
       };
       // 定义请求配置对象
       const opts = {
         method: 'POST',
         url: url + fileName,
         headers: headers,
-        formData: image
+        body: image
       };
       return opts;
     };
