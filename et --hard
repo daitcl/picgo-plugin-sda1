@@ -1,0 +1,95 @@
+[33mcommit a023b60b1fb652f0537193cf6f580f88450bd2c2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 15:28:16 2025 +0800
+
+    将Promise.all并行上传改为for循环顺序执行
+
+[33mcommit 9065959ee1a51365ea41bfeadaac01572397c694[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 15:18:41 2025 +0800
+
+    移除handle函数末尾的sort排序逻辑
+
+[33mcommit 9287a7e59d3fde507df1b1e39f26e0a972ed55a2[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 14:43:39 2025 +0800
+
+    移除了Promise.all后的多余分号并修正了链式调用
+
+[33mcommit 94826429c41857b1b36d9eb269566795554aa1f6[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 14:30:11 2025 +0800
+
+    现有的分步填充方式改为直接使用Promise.all获取完整结果集，通过原始索引保证顺序一致性。
+
+[33mcommit a2dc522329cca1df974871faf6e592009347a1a9[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 14:29:15 2025 +0800
+
+    修改上传多个图片时，返回URL错乱问题
+
+[33mcommit c4acf41981b2e8aeb415cbc05fc8e6577fb2a68d[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 14:00:16 2025 +0800
+
+    修改上传多个图片时，返回URL错乱问题
+
+[33mcommit 713ba0e1781c7248363794cbfafde7a76ef73f5a[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 13:32:13 2025 +0800
+
+    修改上传图片为通用格式
+
+[33mcommit 2d248661ee8c66c44beda71f3aa2fa897df33667[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 13:31:56 2025 +0800
+
+    修改上传图片为通用格式
+
+[33mcommit 733981e1c60f1bc2f03c6f3b0a3362d9a1531186[m[33m ([m[1;31mgithub/main[m[33m, [m[1;31mgitee/main[m[33m)[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 13:13:29 2025 +0800
+
+    修复不显示
+
+[33mcommit f2f2ebb742e9f2d6fca0e8dc18482fb9e8a5ea4a[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 13:13:10 2025 +0800
+
+    修复不显示
+
+[33mcommit 8d05831dae5b98eae114fe726edd9500819363bc[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 10:30:28 2025 +0800
+
+    修改License
+
+[33mcommit 85d8a463db2e7a1cb9f329f5746d3d58079d2895[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 10:12:54 2025 +0800
+
+    修改版本号
+
+[33mcommit b5e5b4d448b255675fbcce0af6ce7255bf551b3a[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Tue Apr 29 09:52:22 2025 +0800
+
+    添加注释
+
+[33mcommit 1b4388a0b469d38ff4bd6f9cdbc3dc8d65a56954[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Mon Apr 28 06:03:37 2025 +0800
+
+    xiugai
+
+[33mcommit 271ade5daae21bf9446b13bef4b3ba6e18061d05[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Mon Apr 28 05:38:17 2025 +0800
+
+    first commit
+
+[33mcommit db3df78242e328be7883feb50bee49f8071d3256[m
+Author: chenlunTian <354769733@qq.com>
+Date:   Mon Apr 28 05:33:05 2025 +0800
+
+    first commit
