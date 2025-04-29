@@ -41,7 +41,8 @@ module.exports = (ctx) => {
       // 获取待上传的图片列表
       let imgList = ctx.output;
       // 使用 map 方法将图片列表转换为包含上传 Promise 的数组
-      const uploadPromises = imgList.map(async (img) => {
+      const uploadPromises = imgList.map(async (img, index) => {
+        const currentIndex = index; // 显式保存当前索引
         // 获取图片的二进制数据
         let image = img.buffer;
         // 如果没有二进制数据，尝试从 base64 数据转换
@@ -86,10 +87,19 @@ module.exports = (ctx) => {
             });
           }
         }
-        return img;
+        return { index: currentIndex, img }; 
       });
-      // 等待所有上传 Promise 完成，并将结果赋值给上下文的 output 属性
-      ctx.output = await Promise.all(uploadPromises);
+      
+      // 等待所有请求并重新排序
+      const results = await Promise.all(uploadPromises);
+      ctx.output = results
+        .sort((a, b) => a.index - b.index)
+        .map(item => {
+          if (!item.img) {
+            throw new Error('上传结果异常：缺少图片对象');
+          }
+          return item.img;
+        });
     } catch (err) {
       // 如果上传过程中出现错误，发送通知提示用户
       ctx.emit('notification', {
@@ -164,4 +174,4 @@ module.exports = (ctx) => {
     uploader: 'sda1',
     register
   };
-};    
+};
