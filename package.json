@@ -1,30 +1,32 @@
 {
   "name": "picgo-plugin-sda1",
-  "version": "1.0.0",
-  "description": "PicGo 插件，用于将图片上传到 p.sda1.dev 图床",
-  "main": "index.js",
+  "version": "1.1.1",
+  "description": "流浪图床",
+  "main": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "",
   "scripts": {
-      "test": "jest",
-      "test:watch": "jest --watch"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "patch": "npm version patch && git push origin master && git push origin --tags",
+    "minor": "npm version minor && git push origin master && git push origin --tags",
+    "major": "npm version major && git push origin master && git push origin --tags"
   },
   "keywords": [
-      "picgo",
-      "plugin",
-      "sda1",
-      "image upload"
+    "picgo",
+    "picgo-gui-plugin",
+    "picgo-plugin"
   ],
-  "author": "Your Name",
+  "author": "dait",
   "license": "MIT",
-  "dependencies": {
-      "axios": "*",
-      "form-data": "*"
-  },
   "devDependencies": {
-      "picgo": "*",
-      "jest": "*"
-  },
-  "picgo": {
-      "name": "SDA1 图床",
-      "type": "uploader"
+    "eslint": "^5.0.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "@varnxy/logger": "^1.1.2"
   }
 }
