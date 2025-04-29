@@ -91,15 +91,20 @@ module.exports = (ctx) => {
       });
       
       // 等待所有请求并重新排序
-      const results = await Promise.all(uploadPromises);
-      ctx.output = results
-        .sort((a, b) => a.index - b.index)
-        .map(item => {
-          if (!item.img) {
-            throw new Error('上传结果异常：缺少图片对象');
-          }
-          return item.img;
-        });
+      // 创建与图片数量相同的结果数组
+      const results = new Array(imgList.length);
+      
+      // 使用索引直接填充结果数组
+      await Promise.all(imgList.map(async (_, index) => {
+        const result = await uploadPromises[index];
+        if (!result.img) {
+          throw new Error('上传结果异常：缺少图片对象');
+        }
+        results[result.index] = result.img;
+      }));
+      
+      // 过滤可能的空值并赋值
+      ctx.output = results.filter(Boolean);
     } catch (err) {
       // 如果上传过程中出现错误，发送通知提示用户
       ctx.emit('notification', {
