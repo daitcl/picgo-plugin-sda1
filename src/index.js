@@ -113,7 +113,8 @@ module.exports = (ctx) => {
     }
     // 定义请求头
     let headers = {
-      'Content-Type': 'image/jpeg',
+      'Content-Type': 'image/jpeg', // [!code --]
+      'Content-Type': 'application/octet-stream', // [!code ++]
       'User-Agent': 'PicGo',
       'Connection': 'keep-alive'
     };
