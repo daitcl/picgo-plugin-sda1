@@ -1,10 +1,12 @@
 {
   "name": "picgo-plugin-sda1",
-  "version": "1.2.1",
+  "version": "1.1.0",
   "description": "流浪图床",
   "main": "src/index.js",
   "files": [
     "src/*",
+    "img/*",
+    "*.jpg",
     "*.json",
     "babel.config.js",
     "LICENSE"
