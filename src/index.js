@@ -54,7 +54,7 @@ module.exports = (ctx) => {
     }
 
     // 解构配置参数
-    const { url, jsonPath } = userConfig;
+    const { url, jsonPath, timeout } = userConfig;
 
     try {
       // 创建原始列表副本防止污染原始数据
@@ -69,7 +69,14 @@ module.exports = (ctx) => {
             // 二进制数据预处理
             let image = img.buffer;
             if (!image && img.base64Image) {
-              image = Buffer.from(img.base64Image, 'base64'); // Base64转Buffer
+              image = Buffer.from(img.base64Image, 'base64');
+            } else if (img.url) {
+              try {
+                image = await downloadImage(ctx, img.url, timeout);
+              } catch (downloadErr) {
+                ctx.log.error('图片下载失败', downloadErr);
+                throw new Error(`远程图片下载失败: ${downloadErr.message}`);
+              }
             }
 
             // 构建请求参数
@@ -162,13 +169,22 @@ module.exports = (ctx) => {
  * @throws 当参数校验失败时抛出异常
  */
   const postOptions = (image, url, fileName) => {
-
+    
     if (!image || !url || !fileName) {
       throw new Error('postOptions 参数无效');
     }
-    // 定义请求头
+    // 自动识别Content-Type
+    const ext = fileName.split('.').pop().toLowerCase();
+    const mimeMap = {
+      jpg: 'image/jpeg',
+      jpeg: 'image/jpeg',
+      png: 'image/png',
+      gif: 'image/gif',
+      webp: 'image/webp'
+    };
+    
     let headers = {
-      'Content-Type': 'application/octet-stream',
+      'Content-Type': mimeMap[ext] || 'application/octet-stream',
       'User-Agent': 'PicGo',
       'Connection': 'keep-alive'
     };
@@ -203,11 +219,49 @@ module.exports = (ctx) => {
         required: false,
         message: '图片URL JSON路径(eg: data.url)',
         alias: 'JSON路径'
-      }
+      },
+      {
+        name: 'timeout',
+        type: 'input',
+        default: userConfig.timeout || 5000,
+        required: true,
+        message: '下载超时时间(毫秒)',
+        alias: '超时设置',
+        validate: (value) => (Number(value) > 0) || '必须输入正整数'
+      },
     ];
   };
   return {
     uploader: 'sda1',
     register
   };
+};
+/**
+ * 下载远程图片
+ * @param {Object} ctx - PicGo上下文
+ * @param {string} url - 图片URL
+ * @param {number} timeout - 超时时间(毫秒)
+ * @returns {Promise<Buffer>}
+ */
+const downloadImage = async (ctx, url, timeout = 5000) => {
+  const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+  if (!urlPattern.test(url)) {
+    throw new Error('无效的URL格式');
+  }
+
+  const response = await ctx.Request.request({
+    url,
+    method: 'GET',
+    timeout,
+    headers: {
+      'User-Agent': 'PicGo'
+    },
+    resolveWithFullResponse: true
+  });
+
+  if (response.statusCode !== 200) {
+    throw new Error(`HTTP ${response.statusCode}`);
+  }
+
+  return Buffer.from(response.body);
 };
