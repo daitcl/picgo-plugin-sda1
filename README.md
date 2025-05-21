@@ -15,6 +15,15 @@
 2. 可以根据需要修改上传地址（默认为 `https://p.sda1.dev/api/v1/upload_external_noform?filename=`）。
 3. 上传图片时，选择 `SDA1` 作为上传器。
 
+### 使用说明
+
+**支持两种上传方式：**
+1. 本地文件上传：直接拖拽或选择本地图片文件
+2. 远程URL上传：在PicGo输入框粘贴图片URL（需符合http/https格式）
+
+**新增配置项说明：**
+- 超时设置：远程图片下载超时时间（单位：毫秒），建议设置为5000-10000
+
 ### 配置选项
 
 - **上传地址**: 图床上传API地址，默认为 `https://p.sda1.dev/api/v1/upload_external_noform?filename=`。
