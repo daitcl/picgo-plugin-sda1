@@ -34,8 +34,6 @@ jobs:
           git push origin main
       - name: npm install
         run: npm install
-      - name: Rollup build
-        run: npm run build
      
       - name: Publish to npm
         run: npm publish
