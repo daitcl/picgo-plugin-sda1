@@ -1,15 +1,21 @@
 {
   "name": "picgo-plugin-sda1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "daitcl023",
   "description": "p.sda1.dev 流浪图床",
-  "keywords": ["picgo","picgo-gui-plugin","picgo-plugin","p.sda1.dev","流浪图床"],
+  "keywords": [
+    "picgo",
+    "picgo-gui-plugin",
+    "picgo-plugin",
+    "p.sda1.dev",
+    "流浪图床"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/daitcl/picgo-plugin-sda1"
   },
   "license": "MIT",
-  "bugs": "https://github.com/daitcl/picgo-plugin-sda1/issues", 
+  "bugs": "https://github.com/daitcl/picgo-plugin-sda1/issues",
   "main": "src/index.js",
   "files": [
     "src/*",
