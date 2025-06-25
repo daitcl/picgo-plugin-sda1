@@ -1,0 +1,43 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Node.js Package
+
+on:
+  release:
+    types: [created] # 仅当创建 Release 时触发
+  push:
+    branches:
+      - main         #仅当 push 到 main 分支时触发
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+      - name: Set up Git user
+        run: |
+          git config --global user.name "daitcl"
+          git config --global user.email "354769733@qq.com"
+      - name: Bump version (optional)
+        run: npm version patch # 自动更新版本号
+      - name: Commit changes (if needed)
+        run: |
+          git add .
+          git commit -m "Bump version" || echo "No changes to commit"
+          git push origin main
+      - name: npm install
+        run: npm install
+      - name: Rollup build
+        run: npm run build
+     
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
